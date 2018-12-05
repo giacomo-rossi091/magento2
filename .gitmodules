@@ -1,0 +1,9 @@
+[submodule "code/html/app/design/frontend/Retorica/FgvTheme"]
+	path = code/html/app/design/frontend/Retorica/FgvTheme
+	url = https://bitbucket.org/retorica-200/fgv_theme/
+[submodule "code/html/app/code/Retorica/FgvThemeModule"]
+	path = code/html/app/code/Retorica/FgvThemeModule
+	url = https://bitbucket.org/retorica-200/fgv_theme_module
+[submodule "code/html/app/code/Retorica/BannerSlider"]
+	path = code/html/app/code/Retorica/BannerSlider
+	url = https://bitbucket.org/retorica-200/banner_slider
