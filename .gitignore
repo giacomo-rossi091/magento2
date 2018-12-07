@@ -18,5 +18,5 @@ code/html/app/*
 !code/html/app/code
 !code/html/app/design
 !code/html/app/upgrade-translations.sh
-magento2-docker-compose/src
+docker/src
 Mageplaza/
