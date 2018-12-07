@@ -1,68 +1,47 @@
 # Mark Shust's Docker Configuration for Magento (https://github.com/markoshust/docker-magento)
-# Version 20.1.0
+# Version 12.0.0
 
 version: "3"
 
 services:
   app:
-    image: markoshust/magento-nginx:1.13-6
+    image: markoshust/magento-nginx:1.13
     ports:
-      - "80:8000"
-      - "443:8443"
+      - 80:8000
     links:
       - db
       - phpfpm
     volumes: &appvolumes
       - ./src:/var/www/html:delegated
-      - ~/.composer:/var/www/.composer:delegated
-      - appdata:/sock
-      # Linux only: uncomment the below volume mounts
-      - appdata:/var/www/html/app
-      - appdata:/var/www/html/bin
-      - appdata:/var/www/html/dev
-      - appdata:/var/www/html/generated
-      - appdata:/var/www/html/lib
-      - appdata:/var/www/html/phpserver
-      - appdata:/var/www/html/pub
-      - appdata:/var/www/html/setup
-      - appdata:/var/www/html/update
-      - appdata:/var/www/html/var
-      - appdata:/var/www/html/vendor
+      - ../code/html/app/code:/var/www/html/app/code:delegated
+      - ../code/html/app/design/frontend/Retorica:/var/www/html/app/design/frontend/Retorica:delegated
+      - ~/.composer:/var/www/html/var/composer_home:delegated
+      - ./env/magento-nginx.conf:/etc/nginx/conf.d/default.conf
+      - sockdatamagento2:/sock
 
   phpfpm:
-    image: markoshust/magento-php:7.2-fpm-0
+    image: markoshust/magento-php:7.1-fpm
     links:
       - db
     volumes: *appvolumes
-    # Linux only: host.docker.internal doesn't exist https://github.com/docker/for-linux/issues/264
-    # Uncomment two lines below & replace IP with result of: docker run --rm alpine ip route | awk 'NR==1 {print $3}'
-    #extra_hosts:
-    #  - "host.docker.internal:IP"
 
-  # Disabling cron by default as it uses higher CPU, enable if needed
-  #cron:
-  #  image: markoshust/magento-php:7.2-fpm-0
-  #  user: root
-  #  command: /usr/local/bin/cronstart
-  #  tty: true
-  #  links:
-  #    - db
-  #  volumes: *appvolumes
+  cron:
+    image: markoshust/magento-php:7.1-fpm
+    user: root
+    command: /usr/local/bin/cronstart
+    tty: true
+    links:
+      - db
+    volumes: *appvolumes
 
   db:
     image: percona:5.7
     ports:
-      - "3306:3306"
+      - 3307:3306
     env_file: env/db.env
     volumes:
-      - dbdata:/var/lib/mysql
-
-  elasticsearch:
-    image: elasticsearch:5.6
-    ports:
-      - "9200:9200"
-      - "9300:9300"
+      - dbdatamagento2:/var/lib/mysql
 
 volumes:
-  appdata:
-  dbdata:
+  dbdatamagento2:
+  sockdatamagento2:
