@@ -10,7 +10,7 @@
     "require": {
         "magento/product-community-edition": "2.2.6",
         "composer/composer": "@alpha",
-        "retorica/fgv-theme": "dev-master",
+        "giacomo/magento2-theme": "dev-master",
     },
     "require-dev": {
         "phpunit/phpunit": "~6.2.0",
@@ -56,9 +56,9 @@
             "type": "composer",
             "url": "https://repo.magento.com/"
         },
-        "retorica_fgv-theme": {
+        "giacomo_magento2-theme": {
             "type": "git",
-            "url": "https://bitbucket.org/retorica-200/fgv_theme.git"
+            "url": "https://github.com/giacomo-rossi091/magento2-theme.git"
         }
     },
     "extra": {
