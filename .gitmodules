@@ -1,6 +1,3 @@
-[submodule "code/html/app/design/frontend/Giacomo/Magento2Theme"]
-	path = code/html/app/design/frontend/Giacomo/Magento2Theme
-	url = https://github.com/giacomo-rossi091/magento2-module
 [submodule "code/html/app/code/Giacomo/Magento2Module"]
 	path = code/html/app/code/Giacomo/Magento2Module
 	url = https://github.com/giacomo-rossi091/magento2-module
